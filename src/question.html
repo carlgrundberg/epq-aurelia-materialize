@@ -1,0 +1,22 @@
+<template>
+  <section>
+    <h2>${heading}</h2>
+
+    <div class="row">
+      <div class="col s6 m3" repeat.for="option of options">
+        <div class="card waves-effect waves-block waves-light" click.delegate="$parent.answer(option)">
+          <div class="card-image" >
+            <img class="activator" src.bind="option.image">
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">${option.title}</span>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">${option.title}</span>
+            <h1 class="center-align">${option.value}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
