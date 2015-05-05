@@ -4,6 +4,8 @@ import 'materialize';
 
 @inject(Router)
 export class App {
+  pageTitle = 'EP Quiz';
+
   constructor(router) {
     this.router = router;
     this.router.configure(config => {

@@ -1,4 +1,10 @@
 <template>
+  <p>Question ${i} of 10.</p>
+
+  <div class="progress">
+    <div class="determinate" css="width: $[progress}%;"></div>
+  </div>
+
   <section>
     <h2>${heading}</h2>
 
@@ -19,4 +25,15 @@
       </div>
     </div>
   </section>
+
+  <div id="result" class.bind="resultClass">
+    <a click.delegate="next()" class="right waves-effect waves-light btn-large">
+      <i class="mdi-navigation-chevron-right right"></i>
+      Next
+    </a>
+
+    <h3 show.bind="isCorrect" id="correct" class="green-text text-darken-1">Correct!</h3>
+
+    <h3 show.bind="isWrong" id="wrong" class="red-text text-darken-1">Wrong!</h3>
+  </div>
 </template>
