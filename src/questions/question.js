@@ -1,19 +1,9 @@
-import {inject} from 'aurelia-framework';
-import {HttpClient} from 'aurelia-http-client';
-import $ from 'jquery'
-
-@inject(HttpClient)
 export class Question{
-  heading = 'Who got the most points during the 14/15 regular season for Modo in the SHL?';
+  heading = 'Who got most points during the 14/15 SHL regular season for Modo?';
   options = [];
   url = 'http://api.eliteprospects.com/beta/teams/9/playerstats?filter=(season.startYear=2014%26gameType=REGULAR_SEASON)';
-  correctAnswer = -1;
-  resultClass = 'hide';
-  isCorrect = false;
-  isWrong = false;
-  i = 1;
 
-  constructor(http){
+  constructor(http) {
     this.http = http;
   }
 
@@ -23,6 +13,7 @@ export class Question{
       var data = res.data;
       var options = [];
       var max = -1;
+      var correctAnswer = -1;
 
       while(options.length < 4) {
         var r = Math.floor(Math.random()*data.length);
@@ -38,41 +29,15 @@ export class Question{
           });
           if(max < player.TP) {
             max = player.TP;
-            this.correctAnswer = options.length -1;
+            correctAnswer = options.length -1;
           }
         }
       }
 
-      options[this.correctAnswer].correct = true;
+      options[correctAnswer].correct = true;
 
       this.options = options;
     });
-  }
-
-  answer(e, option) {
-    e.preventDefault();
-    $('.card-image img').click();
-
-    this.resultClass = '';
-    if(option.correct) {
-      this.isCorrect = true;
-    } else {
-      this.isWrong = true;
-    }
-  }
-
-  next() {
-    this.isCorrect = false;
-    this.isWrong = false;
-    this.resultClass = 'hide';
-    this.i++;
-
-    this.activate();
-  }
-
-
-  get progress() {
-    return Math.round(i / 10 * 100);
   }
 }
 

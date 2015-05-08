@@ -11,7 +11,7 @@ export class App {
     this.router.configure(config => {
       config.title = 'EP Quiz';
       config.map([
-        { route: [''],  moduleId: './question', title:'Question' }
+        { route: [''],  moduleId: './quiz', title:'Quiz' }
       ]);
     });
   }
