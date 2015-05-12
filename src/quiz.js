@@ -1,4 +1,6 @@
-import {Question} from 'questions/question';
+import {Most_Goals_Question} from 'questions/most_goals';
+import {Most_Assists_Question} from 'questions/most_assists';
+import {Most_Points_Question} from 'questions/most_points';
 import $ from 'jquery'
 import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-http-client';
@@ -9,6 +11,7 @@ export class Quiz {
   isCorrect = false;
   isWrong = false;
   i = 1;
+  questions = [ Most_Goals_Question, Most_Assists_Question, Most_Points_Question ];
   question = null;
 
   constructor(http){
@@ -41,8 +44,9 @@ export class Quiz {
     this.showResult = false;
     this.i++;
 
-    this.question = new Question(this.http);
-    this.question.activate();
+
+    this.question = new this.questions[Math.floor(Math.random()*this.questions.length)](this.http);
+    this.question.generate();
   }
 
 
